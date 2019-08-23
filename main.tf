@@ -12,12 +12,6 @@ provider "aws" {
 #   alerternative-domains = "${var.alerternative-domains}"
 # }
 
-# Access Identity
-module "cloudfront-access-identity" {
-  source                      = "./services/cloudfront-access-identity"
-  access-identity-description = "${var.access-identity-description}"
-}
-
 # S3 Module
 module "s3" {
   source                        = "./services/s3/"
@@ -25,7 +19,6 @@ module "s3" {
   deployment-env                = "${var.deployment-env}"
   bucket-name                   = "${var.bucket-name}"
   bucket-description            = "${var.bucket-description}"
-  cloudfront-access-identity    = "${module.cloudfront-access-identity.myapp-access-identity-arn}"
 }
 
 # Cloudfront Module
@@ -40,7 +33,6 @@ module "cloudfront" {
   cloudfront-alias            = "${var.cloudfront-alias}"
   cloudfront-origin           = "${var.cloudfront-origin}"
   s3-website-endpoint         = "${module.s3.s3-website-endpoint}"
-  cloudfront-access-identity  = "${module.cloudfront-access-identity.myapp-access-identity-cloudfront}"
 }
 
 # Route 53

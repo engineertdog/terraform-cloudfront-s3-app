@@ -8,6 +8,3 @@ variable "deployment-env" {}
 variable "bucket-name" {}
 
 variable "bucket-description" {}
-
-# Access Identity
-variable "access-identity" {}

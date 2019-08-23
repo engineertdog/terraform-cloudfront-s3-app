@@ -1,5 +1,5 @@
 ## About
-This repo is used to deploy resources for a frontend application (Angular, React, Vue, etc.) to run via CloudFront. In order to do that, an S3 bucket is created for the production build files and is protected so that the resources can only be accessed through the CloudFront service. This is accomplished with a CloudFront Access Identity. A Route 53 record is created and linked to the CloudFront service as well. ACM is required for SSL, and if you have a certificate in US-East-1 that covers the domain that will serve the CloudFront distribution, you can use that ARN in the main variable file, or you can uncomment the ACM module and use its output ARN instead.
+This repo is used to deploy resources for a frontend application (Angular, React, Vue, etc.) to run via CloudFront. In order to do that, an S3 bucket is created for the production build files and has to be made public (a private / protected S3 instance can only be used for API access, and not serving a website). A Route 53 record is created and linked to the CloudFront service as well. ACM is required for SSL, and if you have a certificate in US-East-1 that covers the domain that will serve the CloudFront distribution, you can use that ARN in the main variable file, or you can uncomment the ACM module and use its output ARN instead.
 
 This Terraform config also assumes that Route 53 is already set up for the domain you wish to use, so we set the domain's zone ID in the variables file in order to reference it. The domain's hosted zone is not managed in this config.
 
@@ -14,7 +14,6 @@ Set the following values in `variables.tf`
 - bucket-name
     - Unique S3 Bucket name for storage.
 - bucket-description
-- access-identity-description
 - acm-certificate-arn
     - Specify this is you already have a certificate in US-East-1 that covers your domain that you wish to use. Otherwise, use the one generated in the ACM module.
 - cloudfront-description

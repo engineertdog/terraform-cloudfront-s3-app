@@ -13,6 +13,3 @@ variable "cloudfront-alias" {}
 
 # S3
 variable "s3-website-endpoint" {}
-
-# Access Identity
-variable "access-identity" {}

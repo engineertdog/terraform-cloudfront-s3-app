@@ -26,11 +26,6 @@ variable "bucket-description" {
   default = "My unique app storage"
 }
 
-# Access Identity
-variable "access-identity-description" {
-  default = "My unique app CloudFront access identity"
-}
-
 # Cloudfront
 variable "acm-certificate-arn" {
   default = "arn:aws:acm:us-east-1:account:certificate/id"

@@ -1,1 +1,0 @@
-variable "access-identity-description" {}

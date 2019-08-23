@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "myapp" {
 
     principals {
       type        = "AWS"
-      identifiers = ["${var.access-identity}"]
+      identifiers = ["*"]
     }
   }
 }

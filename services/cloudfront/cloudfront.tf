@@ -3,20 +3,15 @@ resource "aws_cloudfront_distribution" "myapp" {
     domain_name = "${var.s3-website-endpoint}"
     origin_id   = "${var.cloudfront-origin}"
 
-    # The S3 config is used so that we can allow access to S3 from only CloudFront.
-    s3_origin_config {
-      origin_access_identity = "${var.access-identity}"
+    # Use the following so that you can use the S3 website endpoint from CloudFront.
+    custom_origin_config {
+      http_port                = 80
+      https_port               = 443
+      origin_protocol_policy   = "http-only"
+      origin_ssl_protocols     = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+      origin_read_timeout      = 30
+      origin_keepalive_timeout = 5
     }
-
-    # If you wanted to use a custom origin instead of S3, you can use the following.
-    # custom_origin_config {
-    #   http_port                = 80
-    #   https_port               = 443
-    #   origin_protocol_policy   = "https-only"
-    #   origin_ssl_protocols     = ["TLSv1", "TLSv1.1", "TLSv1.2"]
-    #   origin_read_timeout      = 30
-    #   origin_keepalive_timeout = 5
-    # }
   }
 
   enabled             = true
