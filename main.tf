@@ -8,6 +8,7 @@ provider "aws" {
 # Uncomment the module in order to create the certificate with Terraform.
 # module "acm" {
 #   source                = "./services/acm"
+#   deployment-env        = "${var.deployment-env}"
 #   domain                = "${var.domain}"
 #   alerternative-domains = "${var.alerternative-domains}"
 # }
